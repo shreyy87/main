@@ -1,0 +1,111 @@
+@font-face {
+    font-family:'m1';
+    src: url(fonts/M1.woff);
+    font-display: swap;
+    font-weight: normal;
+    font-style: normal;
+}
+body{
+    background-image: url(BG.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin: 0;
+}
+
+body a{
+    text-decoration: none;
+    font-size: 2vh;
+    text-align: center;
+    padding-top: 1.1vh;
+    color: aliceblue;
+    font-family: m1;
+}
+
+body a:hover{
+    color: aqua;
+}
+
+ @media (max-width: 1400px) {
+    body{background-size: 250vh;background-position: 50% 55%;}
+}
+
+.nav{
+    display: grid;
+    grid-template-rows: 5vh;
+    grid-template-columns: repeat(8,1fr);
+    background-color: rgba(10,10,10,0.8);
+    margin-left: 1vh;
+    margin-right: 1vh;
+    margin-top: 1vh;
+    border-radius: 25px;
+    backdrop-filter: blur(10px);
+}
+
+.a{grid-area: 1/1;}
+.b{grid-area: 1/7;}
+.c{grid-area: 1/8;}
+
+ @media (max-width: 900px) {
+    .nav{border-radius: 0;margin-left: 0;margin-right: 0;margin-top: 0;}
+    .a{grid-area: 1/2/1/3;}
+    .b{grid-area: 1/5/1/6;}
+    .c{grid-area: 1/7/1/8;}
+ }
+
+
+
+
+ .info{   
+    display: grid;
+    grid-template-rows: repeat(1,40pc);
+    grid-template-columns: repeat(1,1fr);
+    grid-gap: 0.2vh;
+    background-color: rgba(10,10,10,0.8);
+    margin-left: 1vh;
+    margin-right: 1vh;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ .card{
+    display: grid;
+    grid-template-rows: 8vh 8vh;
+    grid-template-columns: repeat(4,1fr);
+}
+.card a{
+    padding-top: 23.6vh;
+    background-color: rgba(10,10,10,0.8);
+    margin-left: 1vh;
+    margin-right: 1vh;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+}
+
+.a3{grid-area: 1/1/1/2;}
+.b3{grid-area: 1/2/1/3;}
+.c3{grid-area: 1/3/1/4;}
+.d3{grid-area: 1/4/1/5;}
+
+ @media (max-width: 900px){
+    .card{grid-gap: 0.5vh;}
+    .a3{grid-area: 1/1/1/3;}
+    .b3{grid-area: 1/3/1/5;}
+    .c3{grid-area: 2/1/2/3;}
+    .d3{grid-area: 2/3/2/5;}
+ }
