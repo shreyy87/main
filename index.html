@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CraftBenchMC Sign-In</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <nav class="nav">
+        <a class="a" href="#">CraftBenchMC</a>
+        <a class="b" href="#">Support</a>
+        <a class="c" href="#">Profile</a>
+    </nav>
+    <div class="info">
+        <div class="info-content">
+            <div class="info-inner">
+                <div class="icon-area"></div>
+                <div class="text-area">
+                    <h2>Welcome</h2>
+                    <p>This is your welcome message. Hover on the buttons below to learn more!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <a class="a3" href="#">Command Generator</a>
+        <a class="b3" href="#">Redstone Info</a>
+        <a class="c3" href="#">Build Ideas</a>
+        <a class="d3" href="#">Mob Info</a>
+    </div>
+    <script>
+        const infoContent = document.querySelector('.info-content');
+        const infoInner = infoContent.querySelector('.info-inner');
+        const iconArea = infoInner.querySelector('.icon-area');
+        const textArea = infoInner.querySelector('.text-area');
+        const infoDiv = document.querySelector('.info');
+        const navDiv = document.querySelector('.nav'); // ADDED
+        const cardLinks = document.querySelectorAll('.card a');
+
+        const infoData = {
+            'a3': {
+                icon: '⚙️',
+                title: 'Command Generator',
+                desc: 'Generate Minecraft commands quickly and easily with our command generator tool.',
+                colorClass: 'glow-cg'
+            },
+            'b3': {
+                icon: '🔴',
+                title: 'Redstone Info',
+                desc: 'Learn about Redstone circuits, mechanics, and how to build powerful contraptions.',
+                colorClass: 'glow-redstone'
+            },
+            'c3': {
+                icon: '🛠️',
+                title: 'Build Ideas',
+                desc: 'Find creative and cool build ideas to enhance your Minecraft worlds.',
+                colorClass: 'glow-build'
+            },
+            'd3': {
+                icon: '🐾',
+                title: 'Mob Info',
+                desc: 'Get detailed info about Minecraft mobs, their behaviors, drops, and tips.',
+                colorClass: 'glow-mob'
+            }
+        };
+
+        const defaultContent = {
+            icon: '✨',
+            title: 'Welcome',
+            desc: 'This is your welcome message. Hover on the buttons below to learn more!',
+            colorClass: ''
+        };
+
+        function animateInfoChange(data, hoveredLink) {
+            infoInner.style.opacity = 0;
+            infoInner.style.transform = 'translateX(-20px)';
+            // Remove all glow classes from info panel, navbar, and all buttons
+            infoDiv.classList.remove('glow-cg', 'glow-redstone', 'glow-build', 'glow-mob');
+            navDiv.classList.remove('glow-cg', 'glow-redstone', 'glow-build', 'glow-mob'); // ADDED
+            cardLinks.forEach(link => {
+                link.classList.remove('glow-cg', 'glow-redstone', 'glow-build', 'glow-mob');
+            });
+
+            setTimeout(() => {
+                iconArea.textContent = data.icon;
+                if (data.icon) {
+                    iconArea.classList.add('with-border');
+                } else {
+                    iconArea.classList.remove('with-border');
+                }
+                textArea.innerHTML = `<h2>${data.title}</h2><p>${data.desc}</p>`;
+                // Add the right glow classes
+                if (data.colorClass) {
+                    infoDiv.classList.add(data.colorClass);
+                    navDiv.classList.add(data.colorClass); // ADDED
+                    if (hoveredLink) hoveredLink.classList.add(data.colorClass);
+                }
+                infoInner.style.opacity = 1;
+                infoInner.style.transform = 'translateX(0)';
+            }, 400);
+        }
+
+        cardLinks.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                const id = link.classList[0];
+                animateInfoChange(infoData[id] || defaultContent, link);
+            });
+            link.addEventListener('mouseleave', () => {
+                animateInfoChange(defaultContent, null);
+            });
+        });
+
+        // Set default content on load
+        infoInner.style.opacity = 1;
+        infoInner.style.transform = 'translateX(0)';
+        iconArea.textContent = defaultContent.icon;
+        iconArea.classList.add('with-border');
+        textArea.innerHTML = `<h2>${defaultContent.title}</h2><p>${defaultContent.desc}</p>`;
+    </script>
+</body>
+</html>
